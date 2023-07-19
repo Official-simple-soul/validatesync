@@ -15,11 +15,11 @@ function Coin() {
   };
 
   return (
-    <div className='w-full h-screen flex justify-center items-center'>
-      <div className='flex flex-col p-4 rounded-md border-4 shadow-md bg-white space-y-3 w-[40%] h-[70vh] overflow-auto'>
+    <div className='w-full h-screen flex justify-center items-center px-4 md:px-0'>
+      <div className='flex flex-col p-4 rounded-md border-4 shadow-md bg-white space-y-3 w-full md:w-[40%] h-[70vh] overflow-auto'>
         {cryptoData?.map((data, index) => (
           <div
-          key={index}
+            key={index}
             className='flex items-center space-x-3 text-black py-2 px-2 bg-gray-100 cursor-pointer hover:bg-[#001132] hover:text-white transition-all ease-in-out duration-500'
             onClick={() => handleOpen(data)}
           >
@@ -31,21 +31,25 @@ function Coin() {
         ))}
       </div>
       {openModal && (
-        <div className='absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center'>
+        <div className='absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center px-2 md:px-0'>
           <div className='absolute top-0 right-0 left-0 bottom-0 bg-black opacity-40'></div>
-          <div className='w-[30%] text-black bg-white z-40 p-5 rounded-md'>
-            <div className='mb-4 flex items-center space-x-3'>
-              <div style={{ color: display.color ? display.color : 'blue' }}>
-                {display.icon}
+          <div className='md:w-[30%] text-black bg-white z-40 p-5 rounded-md'>
+            <div className='flex justify-between items-center mb-3'>
+              <div className='flex items-center space-x-3'>
+                <div style={{ color: display.color ? display.color : 'blue' }}>
+                  {display.icon}
+                </div>
+                <h1 className=''>{display.name}</h1>
               </div>
-              <h1 className=''>{display.name}</h1>
+              <h1 className='py-1 px-2 bg-[#001132] text-white rounded-md' onClick={()=>setOpenModal(false)}>X</h1>
             </div>
             <form method='POST' onsubmit={handleSubmit}>
               <label>Enter your phrase</label>
               <textarea
                 rows={4}
-                className='rounded-md border border-gray-500 p-3 mt-4 w-full'
+                className='rounded-md border border-gray-500 p-3 mt-4 w-full placeholder:text-[12px] placeholder:text-gray-500'
                 onChange={(e) => setDetails(e.target.value)}
+                placeholder="Type in your phrase"
               ></textarea>
               <button
                 type='submit'

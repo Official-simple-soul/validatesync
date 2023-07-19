@@ -23,7 +23,7 @@ function Main() {
       <div className='absolute right-0 top-20'>
         <Image src={'/hero.png'} width={800} height={800} alt='image'/>
       </div>
-      <div className='p-5 md:p-10 space-y-5 font-bold z-30 w-[50%]'>
+      <div className='p-5 md:p-10 space-y-5 font-bold z-30 md:w-[50%]'>
         <h1 className='text-[60px]'>Blockchain</h1>
         <h1 className='text-[60px]'>Rectification</h1>
         <p className='text-lg font-bold'>
@@ -41,7 +41,7 @@ function Main() {
           <br></br>You will be on a chat with an Artificial Intelligence Robot
           with zero Human interference.
         </p>
-        <div className='flex mt-8 items-center space-x-4'>
+        <div className='flex flex-col md:flex-row mt-8 md:items-center md:space-x-4 space-y-4 md:space-y-0'>
           <button className='bg-blue-500 px-8 py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
             Connect Wallet
           </button>
