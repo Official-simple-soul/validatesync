@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { cryptoData } from '@/components/data';
 
-function coin() {
+function Coin() {
   const [details, setDetails] = useState('');
   const [display, setDisplay] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -17,8 +17,9 @@ function coin() {
   return (
     <div className='w-full h-screen flex justify-center items-center'>
       <div className='flex flex-col p-4 rounded-md border-4 shadow-md bg-white space-y-3 w-[40%] h-[70vh] overflow-auto'>
-        {cryptoData?.map((data) => (
+        {cryptoData?.map((data, index) => (
           <div
+          key={index}
             className='flex items-center space-x-3 text-black py-2 px-2 bg-gray-100 cursor-pointer hover:bg-[#001132] hover:text-white transition-all ease-in-out duration-500'
             onClick={() => handleOpen(data)}
           >
@@ -60,4 +61,4 @@ function coin() {
   );
 }
 
-export default coin;
+export default Coin;
