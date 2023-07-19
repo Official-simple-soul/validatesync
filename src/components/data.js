@@ -35,17 +35,17 @@ import {
 
 export const cryptoData = [
   {
-    name: 'Bitcoin',
+    name: 'Metamask',
     icon: <SiBitcoin />,
     color: '#F7931A', // Orange
   },
   {
-    name: 'Ethereum',
+    name: 'Trust',
     icon: <SiEthereum />,
     color: '#627EEA', // Blue
   },
   {
-    name: 'Binance Coin',
+    name: 'Phantom',
     icon: <SiBinance />,
     color: '#F0B90B', // Yellow
   },

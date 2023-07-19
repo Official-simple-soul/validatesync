@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -24,5 +25,30 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    font-family: 'Poppins', sans-serif;
 }
 
+
+/* ScrollingTextAnimation.css */
+
+/* Container to hold the scrolling text elements */
+.scrolling-text-container {
+  display: flex; /* Arrange text elements in a row */
+  overflow: hidden; /* Hide overflow text */
+}
+
+/* Individual text elements inside the container */
+.scrolling-text {
+  padding: 0 20px; /* Add spacing between text elements */
+  animation: scroll-left 4s linear infinite; /* Define the animation and its duration */
+}
+
+/* Animation definition */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%); /* Start position - off screen to the right */
+  }
+  100% {
+    transform: translateX(-100%); /* End position - off screen to the left */
+  }
+}

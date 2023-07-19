@@ -14,18 +14,23 @@ import { GiWhiteTower } from 'react-icons/gi';
 import Link from 'next/link';
 import { cryptoData } from './data';
 import Image from 'next/image';
+import ScrollingTextAnimation from './ScrollingText';
+
 function Main() {
   console.log(cryptoData);
 
   return (
     <div className='flex flex-col text-white'>
-      <div className='absolute right-0 top-20'>
+        <ScrollingTextAnimation />
+      <div className='hidden md:flex absolute right-0 top-20'>
         <Image src={'/hero.png'} width={800} height={800} alt='image' />
       </div>
-      <div className='p-5 md:p-10 space-y-5 font-bold z-30 md:w-[50%]'>
-        <h1 className='text-[60px]'>Blockchain</h1>
-        <h1 className='text-[50px] md:text-[60px]'>Rectification</h1>
-        <p className='text-lg font-bold'>
+      <div className='px-1 py-3 md:p-10 space-y-5 font-bold z-30 w-[80%] text-justify md:w-[50%]'>
+        <div className='flex items-center md:flex-col space-x-3 md:space-x-0'>
+          <h1 className='text-2xl md:text-[60px]'>Blockchain</h1>
+          <h1 className='text-2xl md:text-[60px]'>Rectification</h1>
+        </div>
+        <p className='text-[8px] leading-4 font-light md:text-lg md:font-bold'>
           Every digital artwork on Upside is authentic and truly unique.
           Blockchain technology makes this new aproch to digital ownership
           possible. <br></br>
@@ -40,13 +45,13 @@ function Main() {
           <br></br>You will be on a chat with an Artificial Intelligence Robot
           with zero Human interference.
         </p>
-        <div className='flex flex-col md:flex-row mt-8 md:items-center md:space-x-4 space-y-4 md:space-y-0'>
-          <Link href={'/coin'} className='w-full'>
-            <button className='bg-blue-500 w-full px-8 py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
+        <div className='flex mt-8 space-x-4'>
+          <Link href={'/coin'} className=''>
+            <button className='bg-blue-500 text-[7px] py-2 px-3 md:px-8 md:py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
               Connect Wallet
             </button>
           </Link>
-          <select className='bg-transparent px-8 py-4 rounded-md border-2 border-blue-500 cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
+          <select className='bg-transparent text-[7px] py-2 px-3 md:px-8 md:py-4 rounded-md border-2 border-blue-500 cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
             {cryptoData?.map((name) => (
               <option key={name.name} value={name.name}>
                 {name.name}
@@ -55,28 +60,38 @@ function Main() {
           </select>
         </div>
       </div>
-      <div className='section bg-[#091930] py-12 px-5 md:px-10'>
-        <h1 className='text-3xl font-bold mb-6'>Make Your Selection Below</h1>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-5 gap-y-4'>
+      <div className='section bg-[#091930] pt-12 px-1 md:px-10'>
+        <h1 className='md:text-3xl font-bold mb-6'>
+          Make Your Selection Below
+        </h1>
+        <div className='grid grid-cols-2 lg:grid-cols-3 gap-x-2 md:gap-5 gap-y-3'>
           {homedata.map((e) => {
             const { id, title, text, icon } = e;
             return (
               <div
                 key={id}
-                className='bg-[#15243B] shadow-md px-4 py-10 rounded-md space-y-10 cursor-pointer hover:bg-[#001132] transition-all ease-in-out duration-500'
+                className='bg-[#15243B] shadow-md pl-2 md:px-4 py-3 md:py-10 rounded-md space-y-10 cursor-pointer hover:bg-[#001132] transition-all ease-in-out duration-500'
               >
                 <Link href={'/coin'}>
-                  <div className='font-bolder text-[50px] text-blue-500'>
+                  <div className='md:font-bolder text-2xl md:text-[50px] text-blue-500'>
                     {icon}
                   </div>
-                  <h1 className='text-3xl font-bold tracking-wider my-6'>
+                  <h1 className='text-[9px] md:text-3xl font-bold tracking-wider my-2 md:my-6'>
                     {title}
                   </h1>
-                  <h1>{text}</h1>
+                  <h1 className='text-[8px] font-light text-gray-500'>
+                    {text}
+                  </h1>
                 </Link>
               </div>
             );
           })}
+        </div>
+        <div className='flex mt-8 pb-1 text-[6px] justify-between items-center'>
+          <p>
+            Copyright (c) 2022 Blockchain Rectification . All rights reserved
+          </p>
+          <p>Privacy Policy - Terms of Services</p>
         </div>
       </div>
     </div>

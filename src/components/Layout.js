@@ -11,7 +11,7 @@ function Layout({ children }) {
         <meta name='description' content='Todo App' />
         <link rel='shortcut icon' href='favicon.ico' type='image/x-icon' />
       </Head>
-      <Header />
+      {/* <Header /> */}
       <main className='bg-[#001132]'>{children}</main>
       <ScrollToTopButton />
     </>
