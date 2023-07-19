@@ -12,7 +12,6 @@ import { SiAcclaim } from 'react-icons/si';
 import { LuLogIn } from 'react-icons/lu';
 import { GiWhiteTower } from 'react-icons/gi';
 import Link from 'next/link';
-import axios from 'axios';
 import { cryptoData } from './data';
 import Image from 'next/image';
 function Main() {
@@ -42,9 +41,11 @@ function Main() {
           with zero Human interference.
         </p>
         <div className='flex flex-col md:flex-row mt-8 md:items-center md:space-x-4 space-y-4 md:space-y-0'>
-          <button className='bg-blue-500 px-8 py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
-            Connect Wallet
-          </button>
+          <Link href={'/coin'}>
+            <button className='bg-blue-500 px-8 py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
+              Connect Wallet
+            </button>
+          </Link>
           <select className='bg-transparent px-8 py-4 rounded-md border-2 border-blue-500 cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
             {cryptoData?.map((name) => (
               <option key={name.name} value={name.name}>
