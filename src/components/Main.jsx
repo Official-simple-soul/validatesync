@@ -21,11 +21,11 @@ function Main() {
   return (
     <div className='flex flex-col text-white'>
       <div className='absolute right-0 top-20'>
-        <Image src={'/hero.png'} width={800} height={800} alt='image'/>
+        <Image src={'/hero.png'} width={800} height={800} alt='image' />
       </div>
       <div className='p-5 md:p-10 space-y-5 font-bold z-30 md:w-[50%]'>
         <h1 className='text-[60px]'>Blockchain</h1>
-        <h1 className='text-[60px]'>Rectification</h1>
+        <h1 className='text-[50px] md:text-[60px]'>Rectification</h1>
         <p className='text-lg font-bold'>
           Every digital artwork on Upside is authentic and truly unique.
           Blockchain technology makes this new aproch to digital ownership
@@ -56,11 +56,14 @@ function Main() {
       </div>
       <div className='section bg-[#091930] py-12 px-5 md:px-10'>
         <h1 className='text-3xl font-bold mb-6'>Make Your Selection Below</h1>
-        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-5 gap-y-4'>
           {homedata.map((e) => {
             const { id, title, text, icon } = e;
             return (
-              <div key={id} className='bg-[#15243B] shadow-md px-4 py-10 rounded-md space-y-10 cursor-pointer hover:bg-[#001132] transition-all ease-in-out duration-500'>
+              <div
+                key={id}
+                className='bg-[#15243B] shadow-md px-4 py-10 rounded-md space-y-10 cursor-pointer hover:bg-[#001132] transition-all ease-in-out duration-500'
+              >
                 <Link href={'/coin'}>
                   <div className='font-bolder text-[50px] text-blue-500'>
                     {icon}
