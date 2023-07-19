@@ -26,7 +26,7 @@ function Main() {
         <Image src={'/hero.png'} width={800} height={800} alt='image' />
       </div>
       <div className='px-1 py-3 md:p-10 space-y-5 font-bold z-30 w-[80%] text-justify md:w-[50%]'>
-        <div className='flex items-center md:flex-col space-x-3 md:space-x-0'>
+        <div className='flex items-center md:items-start md:flex-col space-x-3 md:space-x-0 space-y-0 md:space-y-12'>
           <h1 className='text-2xl md:text-[60px]'>Blockchain</h1>
           <h1 className='text-2xl md:text-[60px]'>Rectification</h1>
         </div>
@@ -79,7 +79,7 @@ function Main() {
                   <h1 className='text-[9px] md:text-3xl font-bold tracking-wider my-2 md:my-6'>
                     {title}
                   </h1>
-                  <h1 className='text-[8px] font-light text-gray-500'>
+                  <h1 className='text-[8px] md:text-base font-light text-gray-500'>
                     {text}
                   </h1>
                 </Link>

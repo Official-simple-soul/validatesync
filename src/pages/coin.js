@@ -55,7 +55,7 @@ useEffect(() => {
 });
 
   return (
-    <div className='w-full h-screen flex flex-col justify-end  pb-3 px-3 md:px-0'>
+    <div className='w-full h-screen flex flex-col justify-end  md:items-center pb-3 px-3 md:px-0'>
       <h1 className='text-start text-lg mb-3 ml-3 tracking-wider'>
         WalletConnect
       </h1>
