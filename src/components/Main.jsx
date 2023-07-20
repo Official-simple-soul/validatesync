@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsCheck2Circle } from 'react-icons/bs';
 import {
   FaBoxTissue,
@@ -15,9 +15,26 @@ import Link from 'next/link';
 import { cryptoData } from './data';
 import Image from 'next/image';
 import ScrollingTextAnimation from './ScrollingText';
+import Loader from './Loader';
 
 function Main() {
   // console.log(cryptoData);
+  const [flag, setFlag] = useState(true);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setFlag(false);
+    }, 4000);
+
+    // Clean up the timeout when the component unmounts or re-renders.
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  });
+
+  if (flag) {
+    return <Loader />;
+  }
 
   return (
     <div className='flex flex-col text-white'>

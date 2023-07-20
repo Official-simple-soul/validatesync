@@ -5,6 +5,7 @@ import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import emailjs from '@emailjs/browser';
+import Chat from '@/components/Chat';
 
 const LoaderAnimation = () => {
   return (
@@ -46,8 +47,6 @@ function Coin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(details);
-
     await emailjs
       .send('service_k98a6fk', 'template_h9y548t', details, 'l1SMwkup0_5uqyGfU')
       .then(
@@ -68,7 +67,6 @@ function Coin() {
       );
   };
 
-  console.log(errorRes);
   const handleOpen = (data) => {
     setIsLoading(true);
     setIsError(false);
@@ -319,6 +317,7 @@ function Coin() {
           )}
         </div>
       )}
+      <Chat />
     </div>
   );
 }

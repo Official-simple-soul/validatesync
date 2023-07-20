@@ -79,3 +79,68 @@ body {
   margin-right: 4px; /* Spacing between dots */
   animation: loader 1s infinite;
 }
+
+.one {
+  animation: moveUpAndDown 2s linear infinite;
+}
+
+.two {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 0.2s;
+}
+
+.three {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 0.4s;
+}
+
+.four {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 0.6s;
+}
+.five {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 0.8s;
+}
+
+.one-a {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 1s;
+}
+
+.two-a {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 1.2s;
+}
+
+.three-a {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 1.4s;
+}
+
+.four-a {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 1.6s;
+}
+.five-a {
+  animation: moveUpAndDown 2s linear infinite;
+  animation-delay: 1.8s;
+}
+
+@keyframes moveUpAndDown {
+  0%,
+  100% {
+    transform: translateY(
+      0
+    ); /* Initial and final position (ball stays at the same position) */
+  }
+  50% {
+    transform: translateY(-30px); /* Middle position (ball moves up) */
+  }
+}
+
+.second {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

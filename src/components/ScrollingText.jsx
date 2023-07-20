@@ -36,7 +36,7 @@ const ScrollingTextAnimation = () => {
   async function fetchData() {
     try {
       const cryptocurrencyData = await fetchCryptocurrencyData();
-      console.log(cryptocurrencyData.data[0].screen_data);
+
       setCryptoElement(cryptocurrencyData.data[0].screen_data.crypto_data);
       // Process the fetched data or do anything you need with it
     } catch (error) {
@@ -48,7 +48,6 @@ const ScrollingTextAnimation = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  // console.log(cryptoElement);
   return (
     <div className='scrolling-text-container space-x-3 bg-[#15243B] py-1'>
       <Marquee>

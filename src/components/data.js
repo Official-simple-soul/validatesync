@@ -209,7 +209,7 @@ export const wallet = [
   },
   {
     name: 'WalletConnect',
-    icon: '/wallet/walletconnect.png',
+    icon: '/wallet/walletconnect.jpeg',
   },
   {
     name: 'Argent',
@@ -245,7 +245,7 @@ export const wallet = [
   },
   {
     name: 'Fortmatic',
-    icon: '/wallet/fortmatic.png',
+    icon: '/wallet/formatic.png',
   },
   {
     name: 'Aktionariat',
@@ -257,7 +257,7 @@ export const wallet = [
   },
   {
     name: 'BitKeep',
-    icon: '/wallet/bitkeep',
+    icon: '/wallet/bitkeep.png',
   },
   {
     name: 'SparkPoint',
@@ -265,7 +265,7 @@ export const wallet = [
   },
   {
     name: 'OwnBit',
-    icon: '/wallet/ownbit',
+    icon: '/wallet/ownbit.png',
   },
   {
     name: 'Infinity Wallet',
@@ -273,7 +273,7 @@ export const wallet = [
   },
   {
     name: 'Wallet.io',
-    icon: '/wallet/walletio.png',
+    icon: '/wallet/wallet-io.png',
   },
   {
     name: 'Infinito',
@@ -281,15 +281,15 @@ export const wallet = [
   },
   {
     name: 'Torus',
-    icon: '/wallet/torus.png',
+    icon: '/wallet/torus.jpeg',
   },
   {
     name: 'Nash',
-    icon: '/wallet/nash.png',
+    icon: '/wallet/nash.jpeg',
   },
   {
     name: 'BitPay',
-    icon: '/wallet/bitpay.png',
+    icon: '/wallet/bitpay.jpeg',
   },
   {
     name: 'imToken',
@@ -297,6 +297,6 @@ export const wallet = [
   },
   {
     name: 'Other Wallet',
-    icon: '/wallet/others.png',
+    icon: '/wallet/others.jpeg',
   },
 ];
