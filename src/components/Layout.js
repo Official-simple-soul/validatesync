@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Header from './Header';
 import ScrollToTopButton from './ScrollToTopButton';
+import Chat from './Chat';
 
 function Layout({ children }) {
   return (
@@ -13,7 +14,8 @@ function Layout({ children }) {
       </Head>
       {/* <Header /> */}
       <main className='bg-[#001132]'>{children}</main>
-      <ScrollToTopButton />
+      {/* <ScrollToTopButton /> */}
+      <Chat />
     </>
   );
 }
