@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { wallet } from '@/components/data';
 import { BsArrowRightCircle } from 'react-icons/bs';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const LoaderAnimation = () => {
   return (
@@ -83,10 +84,13 @@ function Coin() {
 
   return (
     <div className='w-full h-screen flex flex-col justify-end  md:items-center pb-3 px-3 md:px-0'>
-      <h1 className='text-start text-lg mb-3 ml-3 tracking-wider'>
+      <Link href='/'>
+        <FaArrowLeft className='text-lg' />
+      </Link>
+      <h1 className='text-start text-lg my-3 ml-3 tracking-wider'>
         WalletConnect
       </h1>
-      <div className='flex flex-col pt-7 px-4 rounded-3xl shadow-md bg-white space-y-3 w-full md:w-[40%] h-[88vh]'>
+      <div className='flex flex-col pt-7 px-4 rounded-3xl shadow-md bg-white space-y-3 w-full md:w-[40%] h-[86vh]'>
         <h1 className='text-black'>Connect to a wallet</h1>
         <div className='space-y-3 pt-5 h-[92%] overflow-auto'>
           {wallet?.map((data, index) => (
