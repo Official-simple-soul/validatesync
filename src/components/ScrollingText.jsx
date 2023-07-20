@@ -1,23 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Marquee from 'react-fast-marquee';
+import { cryptoData } from './data';
+import axios from 'axios';
+import Image from 'next/image';
+
+async function fetchCryptocurrencyData() {
+  const options = {
+    method: 'GET',
+    url: 'https://investing-cryptocurrency-markets.p.rapidapi.com/coins/list',
+    params: {
+      edition_currency_id: '12',
+      time_utc_offset: '28800',
+      lang_ID: '1',
+      sort: 'PERC1D_DN',
+      page: '1',
+    },
+    headers: {
+      'X-RapidAPI-Key': 'aa9fe9fa58msh53c01e7eb8c954ap12c810jsn1571c226b0f4',
+      'X-RapidAPI-Host': 'investing-cryptocurrency-markets.p.rapidapi.com',
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    return response.data; // Return the response data to the caller
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch cryptocurrency data');
+  }
+}
 
 const ScrollingTextAnimation = () => {
-  // An array of sample text elements to display in the animation
-  const textElements = [
-    'Text 1',
-    'Text 2',
-    'Text 3',
-    'Text 4',
-    'Text 5',
-  ];
+  const [cryptoElement, setCryptoElement] = useState([]);
 
+  async function fetchData() {
+    try {
+      const cryptocurrencyData = await fetchCryptocurrencyData();
+      console.log(cryptocurrencyData.data[0].screen_data);
+      setCryptoElement(cryptocurrencyData.data[0].screen_data.crypto_data);
+      // Process the fetched data or do anything you need with it
+    } catch (error) {
+      console.error(error.message);
+      // Handle the error gracefully or show an error message to the user
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  // console.log(cryptoElement);
   return (
-    <div className='scrolling-text-container bg-[#15243B] py-1'>
-      {/* Map through the textElements array to display the text elements */}
-      {textElements.map((text, index) => (
-        <div className='scrolling-text text-[8px]' key={index}>
-          {text}
-        </div>
-      ))}
+    <div className='scrolling-text-container space-x-3 bg-[#15243B] py-1'>
+      <Marquee>
+        {cryptoElement?.map((data, index) => (
+          <div className='text-[8px] mx-3 flex items-center' key={index}>
+            <img src={data.logo_url} alt={data.name} className='w-3 h-3' />
+            <h1 className='mx-1 text-blue-800'>{data.name}</h1>
+            <h1 className='text-gray-600'>[{data.currency_symbol}]</h1>
+            <h1 className='mx-1'>${data.inst_price_usd}</h1>
+            <h1 style={{ color: data.change_percent_7d_color }}>
+              {data.change_percent_1d}
+            </h1>
+          </div>
+        ))}
+      </Marquee>
     </div>
   );
 };

@@ -17,11 +17,16 @@ import Image from 'next/image';
 import ScrollingTextAnimation from './ScrollingText';
 
 function Main() {
-  console.log(cryptoData);
+  // console.log(cryptoData);
 
   return (
     <div className='flex flex-col text-white'>
+      <div className='bg-gray-800'>
         <ScrollingTextAnimation />
+        <p className='text-[5px] text-gray-500 py-[1px] text-right'>
+          Cryptocurrency Prices
+        </p>
+      </div>
       <div className='hidden md:flex absolute right-0 top-20'>
         <Image src={'/hero.png'} width={800} height={800} alt='image' />
       </div>
@@ -47,11 +52,11 @@ function Main() {
         </p>
         <div className='flex mt-8 space-x-4'>
           <Link href={'/coin'} className=''>
-            <button className='bg-blue-500 text-[7px] py-2 px-3 md:px-8 md:py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
+            <button className='bg-blue-500 text-[7px] md:text-base py-2 px-3 md:px-8 md:py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
               Connect Wallet
             </button>
           </Link>
-          <select className='bg-transparent text-[7px] py-2 px-3 md:px-8 md:py-4 rounded-md border-2 border-blue-500 cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
+          <select className='bg-transparent text-[7px] md:text-base py-2 px-3 md:px-8 md:py-4 rounded-md border-2 border-blue-500 cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
             {cryptoData?.map((name) => (
               <option key={name.name} value={name.name}>
                 {name.name}
@@ -60,7 +65,7 @@ function Main() {
           </select>
         </div>
       </div>
-      <div className='section bg-[#091930] pt-12 px-1 md:px-10'>
+      <div className='section bg-[#091930] pt-8 mt-5 px-1 md:px-10'>
         <h1 className='md:text-3xl font-bold mb-6'>
           Make Your Selection Below
         </h1>

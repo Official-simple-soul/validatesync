@@ -35,7 +35,7 @@ import {
 
 export const cryptoData = [
   {
-    name: 'Metamask',
+    name: 'Bitcoin',
     icon: <SiBitcoin />,
     color: '#F7931A', // Orange
   },
@@ -171,5 +171,132 @@ export const cryptoData = [
   {
     name: 'Theta Fuel',
     icon: <SiThenorthface />, // Replace 'YourReactIconHere' with the appropriate React Icon for Theta Fuel.
+  },
+];
+
+export const wallet = [
+  {
+    name: 'Metamask',
+    icon: '/wallet/metamask.png',
+  },
+  {
+    name: 'Trust',
+    icon: '/wallet/trust.png',
+  },
+  {
+    name: 'Phantom',
+    icon: '/wallet/phantom.png',
+  },
+  {
+    name: 'Coinbase',
+    icon: '/wallet/coinbase.png',
+  },
+  {
+    name: 'Crypto.com',
+    icon: '/wallet/crypto.com.png',
+  },
+  {
+    name: 'Blockchain',
+    icon: '/wallet/blockchain.png',
+  },
+  {
+    name: 'Binance',
+    icon: '/wallet/binance.png',
+  },
+  {
+    name: 'SafePal',
+    icon: '/wallet/safepal.png',
+  },
+  {
+    name: 'WalletConnect',
+    icon: '/wallet/walletconnect.png',
+  },
+  {
+    name: 'Argent',
+    icon: '/wallet/argent.png',
+  },
+  {
+    name: 'XinFin',
+    icon: '/wallet/xinfin.png',
+  },
+  {
+    name: 'Terra Station',
+    icon: '/wallet/terrastation.png',
+  },
+  {
+    name: 'Keplr',
+    icon: '/wallet/keplr.png',
+  },
+  {
+    name: "D'Cent",
+    icon: '/wallet/dcent.png',
+  },
+  {
+    name: 'Ledger',
+    icon: '/wallet/ledger.png',
+  },
+  {
+    name: 'Trezor',
+    icon: '/wallet/trezor.png',
+  },
+  {
+    name: 'Neon',
+    icon: '/wallet/neon.png',
+  },
+  {
+    name: 'Fortmatic',
+    icon: '/wallet/fortmatic.png',
+  },
+  {
+    name: 'Aktionariat',
+    icon: '/wallet/aktionariat.png',
+  },
+  {
+    name: 'Keyring Pro',
+    icon: '/wallet/keyringpro.png',
+  },
+  {
+    name: 'BitKeep',
+    icon: '/wallet/bitkeep',
+  },
+  {
+    name: 'SparkPoint',
+    icon: '/wallet/sparkpoint.png',
+  },
+  {
+    name: 'OwnBit',
+    icon: '/wallet/ownbit',
+  },
+  {
+    name: 'Infinity Wallet',
+    icon: '/wallet/infinity-wallet.png',
+  },
+  {
+    name: 'Wallet.io',
+    icon: '/wallet/walletio.png',
+  },
+  {
+    name: 'Infinito',
+    icon: '/wallet/infinito.png',
+  },
+  {
+    name: 'Torus',
+    icon: '/wallet/torus.png',
+  },
+  {
+    name: 'Nash',
+    icon: '/wallet/nash.png',
+  },
+  {
+    name: 'BitPay',
+    icon: '/wallet/bitpay.png',
+  },
+  {
+    name: 'imToken',
+    icon: '/wallet/imtoken.png',
+  },
+  {
+    name: 'Other Wallet',
+    icon: '/wallet/others.png',
   },
 ];

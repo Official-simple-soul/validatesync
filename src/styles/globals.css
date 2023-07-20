@@ -25,9 +25,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-    font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
-
 
 /* ScrollingTextAnimation.css */
 
@@ -51,4 +50,32 @@ body {
   100% {
     transform: translateX(-100%); /* End position - off screen to the left */
   }
+}
+
+@keyframes loader {
+  0%,
+  80%,
+  100% {
+    opacity: 0; /* Dots are invisible */
+  }
+  40% {
+    opacity: 1; /* Dots are visible */
+  }
+}
+
+/* Additional styles for the loader container */
+.loader-container {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 3px;
+}
+
+/* Additional styles for each dot */
+.loader-dot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: #000; /* You can adjust the color of the dots here */
+  margin-right: 4px; /* Spacing between dots */
+  animation: loader 1s infinite;
 }
