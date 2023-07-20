@@ -142,7 +142,7 @@ function Coin() {
                   )}
                   {isError && (
                     <button
-                      className='p-2 bg-blue-500 text-white rounded-md text-sm'
+                      className='py-2 px-4 bg-blue-500 text-white rounded-md text-sm'
                       onClick={() => setIsLoading(false)}
                     >
                       Connect <br></br>Manually
