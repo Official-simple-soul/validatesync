@@ -1,10 +1,12 @@
-import Layout from '@/components/Layout'
-import '@/styles/globals.css'
-
+import Layout from '@/components/Layout';
+import '@/styles/globals.css';
+import { ChatProvider } from '../../context/context';
 export default function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ChatProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ChatProvider>
   );
 }

