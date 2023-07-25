@@ -17,6 +17,7 @@ function Adminchat() {
   const router = useRouter();
   const chatContainerRef = useRef(null);
   const [adminChat, setAdminChat] = useState([]);
+  const idd = auth.currentUser.uid;
   useEffect(() => {
     const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
 
@@ -32,7 +33,7 @@ function Adminchat() {
       unsub();
     };
   }, []);
-
+  console.log(idd);
   const handleChat = async () => {
     const adminChatRef = doc(db, 'admin', '7yWl2bmcmM42uRPuwS6n');
     await updateDoc(adminChatRef, {
@@ -140,7 +141,7 @@ function Adminchat() {
           </div>
         ))}
       </div>
-      {chatInfo.name !== '' && (
+      {
         <div className='py-2 z-40 bg-white flex items-center border justify-between fixed bottom-0 w-full px-3'>
           <input
             type='text'
@@ -152,7 +153,7 @@ function Adminchat() {
           <button onClick={() => setShowEmoji(!showEmoji)}>😀</button>
           <AiOutlineSend onClick={handleChat} className='text-gray-400 ml-2' />
         </div>
-      )}
+      }
       <EmojiPicker onEmojiClick={onEmojiClick} showEmoji={showEmoji} />
     </div>
   );
