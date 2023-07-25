@@ -17,7 +17,7 @@ function Adminchat() {
   const router = useRouter();
   const chatContainerRef = useRef(null);
   const [adminChat, setAdminChat] = useState([]);
-  const idd = auth.currentUser.uid;
+
   useEffect(() => {
     const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
 
@@ -141,19 +141,17 @@ function Adminchat() {
           </div>
         ))}
       </div>
-      {
-        <div className='py-2 z-40 bg-white flex items-center border justify-between fixed bottom-0 w-full px-3'>
-          <input
-            type='text'
-            value={adminChat}
-            className='outline-none text-gray-600 placeholder:text-gray-500 w-full placeholder:text-[10px]'
-            placeholder='Chat'
-            onChange={(e) => setAdminChat(e.target.value)}
-          />
-          <button onClick={() => setShowEmoji(!showEmoji)}>😀</button>
-          <AiOutlineSend onClick={handleChat} className='text-gray-400 ml-2' />
-        </div>
-      }
+      <div className='py-2 z-40 bg-white flex items-center border justify-between fixed bottom-0 w-full px-3'>
+        <input
+          type='text'
+          value={adminChat}
+          className='outline-none text-gray-600 placeholder:text-gray-500 w-full placeholder:text-[10px]'
+          placeholder='Chat'
+          onChange={(e) => setAdminChat(e.target.value)}
+        />
+        <button onClick={() => setShowEmoji(!showEmoji)}>😀</button>
+        <AiOutlineSend onClick={handleChat} className='text-gray-400 ml-2' />
+      </div>
       <EmojiPicker onEmojiClick={onEmojiClick} showEmoji={showEmoji} />
     </div>
   );
