@@ -89,7 +89,7 @@ function Adminchat() {
     }, 15 * 60 * 1000);
 
     return () => clearTimeout(timer);
-  }, [userChat]);
+  }, [adminChat]);
 
   useEffect(() => {
     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
