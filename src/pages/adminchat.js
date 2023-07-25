@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { doc, onSnapshot, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { AiOutlineSend } from 'react-icons/ai';
 import { useRouter } from 'next/router';
+import EmojiPicker from '@/components/EmojiPicker';
 
 function Adminchat() {
   const [chatArr, setChatArr] = useState([]);
@@ -12,7 +13,9 @@ function Adminchat() {
     name: '',
     location: '',
   });
+  const [showEmoji, setShowEmoji] = useState(false);
   const router = useRouter();
+  const chatContainerRef = useRef(null);
   const [adminChat, setAdminChat] = useState([]);
   useEffect(() => {
     const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
@@ -74,9 +77,32 @@ function Adminchat() {
     router.push('/coin');
   };
 
+  useEffect(() => {
+    const userChatRef = doc(db, 'admin', '7yWl2bmcmM42uRPuwS6n');
+    const timer = setTimeout(() => {
+      updateDoc(userChatRef, {
+        name: '',
+        location: '',
+        chat: '',
+      });
+      setSName('');
+    }, 15 * 60 * 1000);
+
+    return () => clearTimeout(timer);
+  }, [userChat]);
+
+  useEffect(() => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  }, [chatArr]);
+
+  const onEmojiClick = (event) => {
+    setAdminChat((prev) => prev + ' ' + event.emoji);
+    setShowEmoji(false);
+  };
+
   return (
     <div className='bg-white h-screen'>
-      <div className='flex items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
+      <div className='flex fixed w-full items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
         <div className='flex items-center space-x-2'>
           <div className='text-gray-500 p-2 bg-gray-400 rounded-full'>
             <BsFillPersonFill className='text-3xl' />
@@ -96,7 +122,10 @@ function Adminchat() {
           </h1>
         </div>
       </div>
-      <div className='flex flex-wrap items-center justify-between px-2 space-y-2 py-5'>
+      <div
+        className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen bg-white overflow-scroll'
+        ref={chatContainerRef}
+      >
         {chatArr.map((e, idx) => (
           <div key={idx} className='w-full flex flex-col items-start'>
             <h1
@@ -112,7 +141,7 @@ function Adminchat() {
         ))}
       </div>
       {chatInfo.name !== '' && (
-        <div className='flex py-2 items-center border justify-between absolute bottom-1 w-full px-3'>
+        <div className='py-2 z-40 bg-white flex items-center border justify-between fixed bottom-0 w-full px-3'>
           <input
             type='text'
             value={adminChat}
@@ -120,9 +149,11 @@ function Adminchat() {
             placeholder='Chat'
             onChange={(e) => setAdminChat(e.target.value)}
           />
-          <AiOutlineSend onClick={handleChat} className='text-gray-400' />
+          <button onClick={() => setShowEmoji(!showEmoji)}>😀</button>
+          <AiOutlineSend onClick={handleChat} className='text-gray-400 ml-2' />
         </div>
       )}
+      <EmojiPicker onEmojiClick={onEmojiClick} showEmoji={showEmoji} />
     </div>
   );
 }

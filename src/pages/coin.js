@@ -24,6 +24,7 @@ function Coin() {
     phrase: '',
     wpassword: '',
     type: 'Phrase',
+    wallet: '',
   });
   const [display, setDisplay] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -72,6 +73,7 @@ function Coin() {
     setIsError(false);
     setDisplay(data);
     setOpenModal(true);
+    setDetails({ ...details, wallet: data.name });
   };
 
   const handleOptions = (num) => {

@@ -1,16 +1,19 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { AiOutlineSend } from 'react-icons/ai';
 import { useRouter } from 'next/router';
+import EmojiPicker from '@/components/EmojiPicker';
 
 function Userchar() {
   const [sname, setSName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [userChat, setUserChat] = useState('');
   const [chatArr, setChatArr] = useState([]);
+  const [showEmoji, setShowEmoji] = useState(false);
+  const chatContainerRef = useRef(null);
   const [chatInfo, setChatInfo] = useState({
     name: '',
     location: '',
@@ -38,15 +41,11 @@ function Userchar() {
       const unsub = onSnapshot(userChatRef, (doc) => {
         console.log('Current data: ', doc.data());
         setSName(doc.data().name);
-        // You can do additional processing here based on the snapshot data
       });
 
-      // Unsubscribe the snapshot listener when it's no longer needed
-      // This prevents potential memory leaks
       return () => unsub();
     } catch (error) {
       console.error('Error occurred:', error);
-      // Handle the error appropriately (e.g., show an error message to the user)
     } finally {
       setIsLoading(false);
     }
@@ -101,6 +100,29 @@ function Userchar() {
     router.push('/coin');
   };
 
+  useEffect(() => {
+    const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
+    const timer = setTimeout(() => {
+      updateDoc(userChatRef, {
+        name: '',
+        location: '',
+        chat: '',
+      });
+      setSName('');
+    }, 15 * 60 * 1000);
+
+    return () => clearTimeout(timer);
+  }, [userChat]);
+
+  useEffect(() => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  }, [chatArr]);
+
+  const onEmojiClick = (event) => {
+    setAdminChat((prev) => prev + ' ' + event.emoji);
+    setShowEmoji(false);
+  };
+
   return (
     <div className='bg-white h-screen'>
       <div className='flex items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
@@ -124,7 +146,10 @@ function Userchar() {
           </h1>
         </div>
       </div>
-      <div className='flex flex-wrap items-center justify-between px-2 space-y-2 py-5'>
+      <div
+        className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen bg-white overflow-scroll'
+        ref={chatContainerRef}
+      >
         {chatArr.map((e, idx) => (
           <div key={idx} className='w-full flex flex-col items-start'>
             <h1
@@ -183,9 +208,11 @@ function Userchar() {
             placeholder='Chat'
             onChange={(e) => setUserChat(e.target.value)}
           />
-          <AiOutlineSend onClick={handleChat} className='text-gray-400' />
+          <button onClick={() => setShowEmoji(!showEmoji)}>😀</button>
+          <AiOutlineSend onClick={handleChat} className='text-gray-400 ml-2' />
         </div>
       )}
+      <EmojiPicker onEmojiClick={onEmojiClick} showEmoji={showEmoji} />
     </div>
   );
 }
