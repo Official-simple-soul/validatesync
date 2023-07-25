@@ -139,7 +139,7 @@ function Userchar() {
   };
 
   return (
-    <div className='bg-white '>
+    <div className='bg-white h-screen'>
       <div className='flex items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
         <div className='flex items-center space-x-2'>
           <div className='text-gray-500 p-2 bg-gray-400 rounded-full'>
