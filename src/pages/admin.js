@@ -36,7 +36,7 @@ function Admin() {
       );
       const user = userCredential.user;
       setUserDetails(user);
-      router.push('/');
+      router.push('/adminchat');
       setIsLoading(false);
     } catch (error) {
       const errorMessage = error.message;
