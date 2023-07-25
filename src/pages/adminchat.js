@@ -33,7 +33,7 @@ function Adminchat() {
       unsub();
     };
   }, []);
-  console.log(idd);
+
   const handleChat = async () => {
     const adminChatRef = doc(db, 'admin', '7yWl2bmcmM42uRPuwS6n');
     await updateDoc(adminChatRef, {
@@ -100,9 +100,16 @@ function Adminchat() {
     setAdminChat((prev) => prev + ' ' + event.emoji);
     setShowEmoji(false);
   };
+  // console.log(Boolean(auth.currentUser?.uid);
+  useEffect(() => {
+    if (!auth.currentUser) {
+      router.push('/admin');
+    }
+  }, []);
 
   return (
     <div className='bg-white h-screen'>
+      <ToastContainer />
       <div className='flex fixed w-full items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
         <div className='flex items-center space-x-2'>
           <div className='text-gray-500 p-2 bg-gray-400 rounded-full'>
@@ -127,19 +134,22 @@ function Adminchat() {
         className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen bg-white overflow-scroll'
         ref={chatContainerRef}
       >
-        {chatArr.map((e, idx) => (
-          <div key={idx} className='w-full flex flex-col items-start'>
-            <h1
-              className={`block text-gray-500 w-auto rounded-md ${
-                e.type === 'user'
-                  ? 'text-end ms-auto text-white bg-blue-600 px-2 py-1 rounded'
-                  : 'text-start me-auto bg-blue-200 px-2 py-1 rounded'
-              }`}
-            >
-              {e.chat}
-            </h1>
-          </div>
-        ))}
+        {chatArr.length[0] !== '' &&
+          chatArr.map((e, idx) => (
+            <div key={idx} className='w-full flex flex-col items-start'>
+              <h1
+                className={`${
+                  e.chat !== '' ? 'px-2 py-1' : ''
+                } block text-gray-500 w-auto rounded-md ${
+                  e.type === 'user'
+                    ? 'text-end ms-auto text-white bg-blue-600 rounded'
+                    : 'text-start me-auto bg-blue-200 rounded'
+                }`}
+              >
+                {e.chat}
+              </h1>
+            </div>
+          ))}
       </div>
       <div className='py-2 z-40 bg-white flex items-center border justify-between fixed bottom-0 w-full px-3'>
         <input
