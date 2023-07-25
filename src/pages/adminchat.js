@@ -105,11 +105,10 @@ function Adminchat() {
     if (!auth.currentUser) {
       router.push('/admin');
     }
-  }, []);
+  }, [router]);
 
   return (
     <div className='bg-white h-screen'>
-      <ToastContainer />
       <div className='flex fixed w-full items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
         <div className='flex items-center space-x-2'>
           <div className='text-gray-500 p-2 bg-gray-400 rounded-full'>
