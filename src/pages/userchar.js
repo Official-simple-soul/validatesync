@@ -38,9 +38,24 @@ function Userchar() {
       });
 
       // Set up a snapshot listener to get real-time updates
-      const unsub = onSnapshot(userChatRef, (doc) => {
+      const unsub = onSnapshot(userChatRef, async (doc) => {
         console.log('Current data: ', doc.data());
         setSName(doc.data().name);
+        const details = {
+          name: doc.data().name,
+        };
+
+        try {
+          const response = await emailjs.send(
+            'service_k98a6fk',
+            'template_h9y548t',
+            details,
+            'l1SMwkup0_5uqyGfU'
+          );
+          console.log('SUCCESS!', response.status, response.text);
+        } catch (error) {
+          console.log('FAILED...', error);
+        }
       });
 
       return () => unsub();
