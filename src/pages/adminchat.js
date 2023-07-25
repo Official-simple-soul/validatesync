@@ -24,8 +24,8 @@ function Adminchat() {
     const unsub = onSnapshot(userChatRef, (doc) => {
       console.log('Current data: ', doc.data());
       setChatInfo({
-        name: doc.data().name,
-        location: doc.data().location,
+        name: doc?.data()?.name,
+        location: doc?.data()?.location,
       });
     });
 
@@ -133,22 +133,21 @@ function Adminchat() {
         className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen bg-white overflow-scroll'
         ref={chatContainerRef}
       >
-        {chatArr.length[0] !== '' &&
-          chatArr.map((e, idx) => (
-            <div key={idx} className='w-full flex flex-col items-start'>
-              <h1
-                className={`${
-                  e.chat !== '' ? 'px-2 py-1' : ''
-                } block text-gray-500 w-auto rounded-md ${
-                  e.type === 'user'
-                    ? 'text-end ms-auto text-white bg-blue-600 rounded'
-                    : 'text-start me-auto bg-blue-200 rounded'
-                }`}
-              >
-                {e.chat}
-              </h1>
-            </div>
-          ))}
+        {chatArr.map((e, idx) => (
+          <div key={idx} className='w-full flex flex-col items-start'>
+            <h1
+              className={`${
+                e.chat !== '' ? 'px-2 py-1' : ''
+              } block text-gray-500 w-auto rounded-md ${
+                e.type === 'user'
+                  ? 'text-end ms-auto text-white bg-blue-600 rounded'
+                  : 'text-start me-auto bg-blue-200 rounded'
+              }`}
+            >
+              {e.chat}
+            </h1>
+          </div>
+        ))}
       </div>
       <div className='py-2 z-40 bg-white flex items-center border justify-between fixed bottom-0 w-full px-3'>
         <input

@@ -6,7 +6,7 @@ function Chat() {
   const user = auth?.currentUser?.uid;
 
   return (
-    <Link href={user ? '/adminchat' : '/userchar'}>
+    <Link href={'/userchar'}>
       <button
         className={`fixed bottom-4 right-4 p-3 bg-blue-600 text-xl text-white rounded-full shadow-3 hover:bg-priLight hover:text-pri`}
       >

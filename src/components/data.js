@@ -296,6 +296,202 @@ export const wallet = [
     icon: '/wallet/imtoken.png',
   },
   {
+    name: 'solana',
+    icon: '/wallet/solana.png',
+  },
+  {
+    name: 'lobstr',
+    icon: '/wallet/lb.jpg',
+  },
+  {
+    name: 'yoroi',
+    icon: '/wallet/yr.jpg',
+  },
+  {
+    name: 'Hashpack',
+    icon: '/wallet/Hashpack.jpg',
+  },
+  {
+    name: 'stargazer',
+    icon: '/wallet/Stargazer.jpg',
+  },
+  {
+    name: 'Coinomi',
+    icon: '/wallet/coinomi.jpg',
+  },
+  {
+    name: 'Edge',
+    icon: '/wallet/ed.jpg',
+  },
+  {
+    name: 'Solar',
+    icon: '/wallet/solar.jpg',
+  },
+  {
+    name: 'Defly',
+    icon: '/wallet/defly.jpg',
+  },
+  {
+    name: 'Phoenix',
+    icon: '/wallet/phoenix.jpg',
+  },
+  {
+    name: 'Wasabi',
+    icon: '/wallet/wasabi.jpg',
+  },
+  {
+    name: 'Pera Algo',
+    icon: '/wallet/pera-algo.jpg',
+  },
+  {
+    name: 'Sender',
+    icon: '/wallet/sender.jpg',
+  },
+  {
+    name: 'Xcel pay',
+    icon: '/wallet/xceipay.jpg',
+  },
+  {
+    name: 'Anchor',
+    icon: '/wallet/anchor.jpg',
+  },
+  {
+    name: 'ONTO',
+    icon: '/wallet/Onto.jpg',
+  },
+  {
+    name: 'Rainbow',
+    icon: '/wallet/rainbow.jpg',
+  },
+  {
+    name: 'Agent',
+    icon: '/wallet/agent.jpg',
+  },
+  {
+    name: 'CYBAVO',
+    icon: '/wallet/cybavo.jpg',
+  },
+  {
+    name: 'GRINDplus',
+    icon: '/wallet/gridplus.jpg',
+  },
+  {
+    name: 'Pillar',
+    icon: '/wallet/pillar.webp',
+  },
+  {
+    name: 'Curve Finance',
+    icon: '/wallet/curvelogo.png',
+  },
+  {
+    name: 'TokenPocket',
+    icon: '/wallet/tokenpocket.webp',
+  },
+  {
+    name: 'MathWallet',
+    icon: '/wallet/mathwallet.jpg',
+  },
+  {
+    name: 'LedgerLive',
+    icon: '/wallet/ledgerlive.png',
+  },
+  {
+    name: 'Authereum',
+    icon: '/wallet/Authereum.jpg',
+  },
+  {
+    name: '1inch',
+    icon: '/wallet/1inch.jpg',
+  },
+  {
+    name: 'Huobi',
+    icon: '/wallet/huobi.webp',
+  },
+  {
+    name: 'Eidoo',
+    icon: '/wallet/eidoo.jpg',
+  },
+  {
+    name: 'MYKEY',
+    icon: '/wallet/Mykey.jpg',
+  },
+  {
+    name: 'TrustVault',
+    icon: '/wallet/Truthvault.jpg',
+  },
+  {
+    name: 'Coin98',
+    icon: '/wallet/coin98.jpg',
+  },
+  {
+    name: 'ZkSync',
+    icon: '/wallet/znky.jpg',
+  },
+  {
+    name: 'Swap X',
+    icon: '/wallet/swap.jpg',
+  },
+  {
+    name: 'starname',
+    icon: '/wallet/starname.png',
+  },
+  {
+    name: 'Dodo',
+    icon: '/wallet/dodo.png',
+  },
+  {
+    name: 'Tokamak Network',
+    icon: '/wallet/tokmark.png',
+  },
+  {
+    name: 'Falconswap',
+    icon: '/wallet/falconswap.png',
+  },
+  {
+    name: 'Filecone',
+    icon: '/wallet/filecoin.png',
+  },
+  {
+    name: 'Bancor',
+    icon: '/wallet/bancor.png',
+  },
+  {
+    name: 'Octofi',
+    icon: '/wallet/octofi.jpg',
+  },
+  {
+    name: 'Bitfrost',
+    icon: '/wallet/bitfro.png',
+  },
+  {
+    name: 'SuperRare',
+    icon: '/wallet/super.jpg',
+  },
+  {
+    name: 'ParaSwap',
+    icon: '/wallet/Paraswap.jpg',
+  },
+  {
+    name: 'Cool',
+    icon: '/wallet/coolwallets.webp',
+  },
+  {
+    name: 'ZelCore',
+    icon: '/wallet/zelcore.webp',
+  },
+  {
+    name: 'Solflare',
+    icon: '/wallet/solf.webp',
+  },
+  {
+    name: 'Spatium',
+    icon: '/wallet/spatium.webp',
+  },
+  {
+    name: 'Vision',
+    icon: '/wallet/version.jpg',
+  },
+  {
     name: 'Other Wallet',
     icon: '/wallet/others.jpeg',
   },
