@@ -16,6 +16,7 @@ import { cryptoData } from './data';
 import Image from 'next/image';
 import ScrollingTextAnimation from './ScrollingText';
 import Loader from './Loader';
+import Chat from './Chat';
 
 function Main() {
   // console.log(cryptoData);
@@ -116,6 +117,7 @@ function Main() {
           <p>Privacy Policy - Terms of Services</p>
         </div>
       </div>
+      <Chat />
     </div>
   );
 }

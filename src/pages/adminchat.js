@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import React, { useEffect, useState, useRef } from 'react';
-import { BsFillPersonFill } from 'react-icons/bs';
+import {
+  BsChatQuoteFill,
+  BsEmojiSmile,
+  BsFillPersonFill,
+} from 'react-icons/bs';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { AiOutlineSend } from 'react-icons/ai';
@@ -109,7 +113,7 @@ function Adminchat() {
 
   return (
     <div className='bg-white h-screen'>
-      <div className='flex fixed w-full items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
+      <div className='flex fixed w-full text-white fixed top-0 items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
         <div className='flex items-center space-x-2'>
           <div className='text-gray-500 p-2 bg-gray-400 rounded-full'>
             <BsFillPersonFill className='text-3xl' />
@@ -124,28 +128,44 @@ function Adminchat() {
         </div>
         <div className='flex items-center space-x-2'>
           <h1>{chatInfo.name}</h1>
-          <h1 className='p-2 bg-gray-600 rounded' onClick={handleExit}>
+          <h1
+            className='p-2 bg-gray-600 rounded cursor-pointer'
+            onClick={handleExit}
+          >
             x
           </h1>
         </div>
       </div>
       <div
-        className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen bg-white overflow-scroll'
+        className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen bg-white overflow-y-auto'
         ref={chatContainerRef}
       >
         {chatArr.map((e, idx) => (
           <div key={idx} className='w-full flex flex-col items-start'>
-            <h1
+            <span
               className={`${
                 e.chat !== '' ? 'px-2 py-1' : ''
-              } block text-gray-500 w-auto rounded-md ${
+              } block text-gray-500 w-auto rounded-xl ${
                 e.type === 'user'
-                  ? 'text-end ms-auto text-white bg-blue-600 rounded'
-                  : 'text-start me-auto bg-blue-200 rounded'
-              }`}
+                  ? 'text-end ms-auto text-white bg-blue-600'
+                  : 'text-start me-auto bg-gray-100'
+              } flex items-end`}
             >
-              {e.chat}
-            </h1>
+              {e.type === 'admin' && (
+                <BsChatQuoteFill className='bg-gray-200 p-[3px] text-white text-[14px] rounded-full ' />
+              )}
+              <h1
+                className={`${
+                  e.chat !== '' ? 'px-2 py-1' : ''
+                } block text-gray-500 w-auto rounded-xl ${
+                  e.type === 'user'
+                    ? 'text-end ms-auto text-white bg-blue-600'
+                    : 'text-start me-auto bg-gray-100'
+                }`}
+              >
+                {e.chat}
+              </h1>
+            </span>
           </div>
         ))}
       </div>
@@ -157,8 +177,16 @@ function Adminchat() {
           placeholder='Chat'
           onChange={(e) => setAdminChat(e.target.value)}
         />
-        <button onClick={() => setShowEmoji(!showEmoji)}>😀</button>
-        <AiOutlineSend onClick={handleChat} className='text-gray-400 ml-2' />
+        <button
+          className='cursor-pointer'
+          onClick={() => setShowEmoji(!showEmoji)}
+        >
+          <BsEmojiSmile className='text-gray-500' />
+        </button>
+        <AiOutlineSend
+          onClick={handleChat}
+          className='text-gray-400 ml-2 cursor-pointer'
+        />
       </div>
       <EmojiPicker onEmojiClick={onEmojiClick} showEmoji={showEmoji} />
     </div>

@@ -18,9 +18,7 @@ function Layout({ children }) {
         <meta property='og:url' content='https://contractfixs.vercel.app/' />
         <link rel='shortcut icon' href='favicon.ico' type='image/x-icon' />
       </Head>
-      {/* <Header /> */}
       <main className='bg-[#001132]'>{children}</main>
-      {/* <ScrollToTopButton /> */}
     </>
   );
 }

@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import React, { useEffect, useState, useRef } from 'react';
-import { BsFillPersonFill } from 'react-icons/bs';
+import {
+  BsChatQuoteFill,
+  BsEmojiSmile,
+  BsFillPersonFill,
+} from 'react-icons/bs';
 import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import { AiOutlineSend } from 'react-icons/ai';
 import { useRouter } from 'next/router';
 import EmojiPicker from '@/components/EmojiPicker';
+import emailjs from '@emailjs/browser';
 
 function Userchar() {
   const [sname, setSName] = useState('');
@@ -14,6 +19,7 @@ function Userchar() {
   const [chatArr, setChatArr] = useState([]);
   const [showEmoji, setShowEmoji] = useState(false);
   const chatContainerRef = useRef(null);
+  const [lastUpdateTimestamp, setLastUpdateTimestamp] = useState(Date.now());
   const [chatInfo, setChatInfo] = useState({
     name: '',
     location: '',
@@ -80,6 +86,7 @@ function Userchar() {
       },
     ]);
     setUserChat('');
+    setLastUpdateTimestamp(Date.now());
   };
 
   useEffect(() => {
@@ -117,20 +124,21 @@ function Userchar() {
 
   useEffect(() => {
     const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
-    const timer = setTimeout(() => {
+    if (Date.now() - lastUpdateTimestamp >= 15 * 60 * 1000) {
       updateDoc(userChatRef, {
         name: '',
         location: '',
         chat: '',
       });
       setSName('');
-    }, 15 * 60 * 1000);
-
-    return () => clearTimeout(timer);
+    }
   }, [userChat]);
-
+  console.log(lastUpdateTimestamp);
   useEffect(() => {
-    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
   }, [chatArr]);
 
   const onEmojiClick = (event) => {
@@ -140,7 +148,7 @@ function Userchar() {
 
   return (
     <div className='bg-white h-screen'>
-      <div className='flex items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
+      <div className='fixed w-full top-0 text-white flex items-center justify-between bg-blue-500 px-2 py-3 shadow-md'>
         <div className='flex items-center space-x-2'>
           <div className='text-gray-500 p-2 bg-gray-400 rounded-full'>
             <BsFillPersonFill className='text-3xl' />
@@ -156,31 +164,53 @@ function Userchar() {
         <div className='flex items-center space-x-2'>
           <h1>{sname}</h1>
 
-          <h1 className='p-2 bg-gray-600 rounded' onClick={handleExit}>
+          <h1
+            className='p-2 bg-gray-600 rounded cursor-pointer'
+            onClick={handleExit}
+          >
             x
           </h1>
         </div>
       </div>
-      <div
-        className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen overflow-scroll'
-        ref={chatContainerRef}
-      >
-        {chatArr.map((e, idx) => (
-          <div key={idx} className='w-full flex flex-col items-start'>
-            <h1
-              className={`${
-                e.chat !== '' ? 'px-2 py-1' : ''
-              } block text-gray-500 w-auto rounded-md ${
-                e.type === 'user'
-                  ? 'text-end ms-auto text-white bg-blue-600 rounded'
-                  : 'text-start me-auto bg-blue-200 rounded'
-              }`}
-            >
-              {e.chat}
-            </h1>
-          </div>
-        ))}
-      </div>
+      {sname !== '' && (
+        <div
+          className='flex flex-wrap items-center justify-between px-2 space-y-2 py-20 max-h-screen overflow-y-auto'
+          ref={chatContainerRef}
+        >
+          {chatArr.map((e, idx) => (
+            <div key={idx} className='w-full flex flex-col items-start'>
+              <span
+                className={`${
+                  e.chat !== '' ? 'px-2 py-1' : ''
+                } block text-gray-500 w-auto rounded-xl ${
+                  e.type === 'user'
+                    ? 'text-end ms-auto text-white'
+                    : 'text-start me-auto'
+                } flex items-end`}
+              >
+                {e.type === 'admin' && (
+                  <BsChatQuoteFill
+                    className={`${
+                      e.chat !== '' ? 'flex' : 'hidden'
+                    } bg-gray-200 p-[3px] text-white text-[14px] rounded-full`}
+                  />
+                )}
+                <h1
+                  className={`${
+                    e.chat !== '' ? 'px-2 py-1' : ''
+                  } block text-gray-500 w-auto rounded-xl ${
+                    e.type === 'user'
+                      ? 'text-end ms-auto text-white bg-blue-600'
+                      : 'text-start me-auto bg-gray-100'
+                  }`}
+                >
+                  {e.chat}
+                </h1>
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
       {sname === '' && (
         <div className='h-full w-full px-3 text-black flex flex-col items-center justify-center'>
           <h1 className='text-center text-gray-500 mb-4'>
@@ -217,7 +247,7 @@ function Userchar() {
         </div>
       )}
       {sname !== '' && (
-        <div className='flex py-2 items-center border justify-between absolute bottom-1 w-full px-3'>
+        <div className='flex py-2 items-center border justify-between absolute bottom-0 w-full px-3'>
           <input
             type='text'
             value={userChat}
@@ -225,7 +255,9 @@ function Userchar() {
             placeholder='Chat'
             onChange={(e) => setUserChat(e.target.value)}
           />
-          <button onClick={() => setShowEmoji(!showEmoji)}>😀</button>
+          <button onClick={() => setShowEmoji(!showEmoji)}>
+            <BsEmojiSmile className='text-gray-500' />
+          </button>
           <AiOutlineSend onClick={handleChat} className='text-gray-400 ml-2' />
         </div>
       )}

@@ -34,7 +34,7 @@ import Picker from 'emoji-picker-react';
 
 const EmojiPicker = ({ onEmojiClick, showEmoji }) => {
   return (
-    <div className='bg-white pb-5'>
+    <div className='bg-white'>
       {showEmoji ? <Picker onEmojiClick={onEmojiClick} /> : null}
     </div>
   );
