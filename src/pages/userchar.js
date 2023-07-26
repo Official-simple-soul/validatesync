@@ -142,7 +142,7 @@ function Userchar() {
   }, [chatArr]);
 
   const onEmojiClick = (event) => {
-    setAdminChat((prev) => prev + ' ' + event.emoji);
+    setUserChat((prev) => prev + ' ' + event.emoji);
     setShowEmoji(false);
   };
 
