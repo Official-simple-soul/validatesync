@@ -27,7 +27,6 @@ function Admin() {
     setError('');
 
     try {
-      console.log('Login data:', loginData);
       const { email, password } = loginData;
       const userCredential = await signInWithEmailAndPassword(
         auth,

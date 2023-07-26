@@ -45,7 +45,6 @@ function Userchar() {
 
       // Set up a snapshot listener to get real-time updates
       const unsub = onSnapshot(userChatRef, async (doc) => {
-        console.log('Current data: ', doc.data());
         setSName(doc.data().name);
         const details = {
           name: doc.data().name,
@@ -133,7 +132,7 @@ function Userchar() {
       setSName('');
     }
   }, [userChat]);
-  console.log(lastUpdateTimestamp);
+
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =

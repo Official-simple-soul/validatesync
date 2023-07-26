@@ -26,7 +26,6 @@ function Adminchat() {
     const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
 
     const unsub = onSnapshot(userChatRef, (doc) => {
-      console.log('Current data: ', doc.data());
       setChatInfo({
         name: doc?.data()?.name,
         location: doc?.data()?.location,
