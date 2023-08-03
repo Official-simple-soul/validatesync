@@ -7,22 +7,22 @@ import Loader from './Loader';
 import Chat from './Chat';
 
 function Main() {
-  const [flag, setFlag] = useState(true);
+  // const [flag, setFlag] = useState(true);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setFlag(false);
-    }, 4000);
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     setFlag(false);
+  //   }, 4000);
 
-    // Clean up the timeout when the component unmounts or re-renders.
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  });
+  //   // Clean up the timeout when the component unmounts or re-renders.
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   };
+  // });
 
-  if (flag) {
-    return <Loader />;
-  }
+  // if (flag) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className='flex flex-col text-white'>
