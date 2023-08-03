@@ -35,7 +35,7 @@ function Userchar() {
     setIsLoading(true);
 
     try {
-      const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
+      const userChatRef = doc(db, 'validateuser', 'kO4jPXVmEskxx4dPNemz');
 
       // Update the document with the provided chatInfo data
       await updateDoc(userChatRef, {
@@ -52,10 +52,10 @@ function Userchar() {
 
         try {
           const response = await emailjs.send(
-            'service_k98a6fk',
-            'template_h9y548t',
+            'service_1bipru1',
+            'template_dfjv3pi',
             details,
-            'l1SMwkup0_5uqyGfU'
+            'Zv3dA0R0JSL2s0LwA'
           );
           console.log('SUCCESS!', response.status, response.text);
         } catch (error) {
@@ -72,7 +72,7 @@ function Userchar() {
   };
 
   const handleChat = async () => {
-    const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
+    const userChatRef = doc(db, 'validateuser', 'kO4jPXVmEskxx4dPNemz');
     await updateDoc(userChatRef, {
       chat: userChat,
     });
@@ -89,7 +89,7 @@ function Userchar() {
   };
 
   useEffect(() => {
-    const userChatRef = doc(db, 'admin', '7yWl2bmcmM42uRPuwS6n');
+    const userChatRef = doc(db, 'validate', 'swDvjvgz9su0LDGwTNki');
 
     const unsub = onSnapshot(userChatRef, (doc) => {
       setChatArr((prev) => [
@@ -107,7 +107,7 @@ function Userchar() {
   }, []);
 
   const handleExit = async () => {
-    const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
+    const userChatRef = doc(db, 'validateuser', 'kO4jPXVmEskxx4dPNemz');
 
     // Update the document with the provided chatInfo data
     await updateDoc(userChatRef, {
@@ -122,7 +122,7 @@ function Userchar() {
   };
 
   useEffect(() => {
-    const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
+    const userChatRef = doc(db, 'validateuser', 'kO4jPXVmEskxx4dPNemz');
     if (Date.now() - lastUpdateTimestamp >= 15 * 60 * 1000) {
       updateDoc(userChatRef, {
         name: '',
