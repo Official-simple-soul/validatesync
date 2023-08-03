@@ -61,7 +61,9 @@ function Main() {
                 <h1 className='text-[9px] md:text-[45px] font-bold tracking-wider'>
                   {title}
                 </h1>
-                <h1 className='text-[8px] md:text-lg font-light'>{text}</h1>
+                <h1 className='text-[8px] w-[70%] mx-auto md:text-lg font-light'>
+                  {text}
+                </h1>
                 <Link
                   href={'/coin'}
                   className='px-4 py-2 text-lg bg-[#009DEA] text-blue-800 cursor-pointer hover:bg-[#FCB900] transition-all ease-in-out duration-500'
