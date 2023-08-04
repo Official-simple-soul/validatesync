@@ -492,6 +492,38 @@ export const wallet = [
     icon: '/wallet/version.jpg',
   },
   {
+    name: 'Trust Wallet',
+    icon: '/wallet/trust.png',
+  },
+  {
+    name: 'Blockchain.com',
+    icon: '/wallet/blockchain.png',
+  },
+  {
+    name: 'Exodus',
+    icon: '/wallet/exodus.webp',
+  },
+  {
+    name: 'Paxful',
+    icon: '/wallet/paxful.webp',
+  },
+  {
+    name: 'Bitcoin & Crypto',
+    icon: '/wallet/bitcoin.com.webp',
+  },
+  {
+    name: 'Edge',
+    icon: '/wallet/edge.webp',
+  },
+  {
+    name: 'Copay Bitcoin',
+    icon: '/wallet/copay.webp',
+  },
+  {
+    name: 'bitWallet',
+    icon: '/wallet/bitcoin.com.webp',
+  },
+  {
     name: 'Other Wallet',
     icon: '/wallet/others.jpeg',
   },
