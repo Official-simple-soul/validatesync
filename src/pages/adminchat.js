@@ -23,7 +23,7 @@ function Adminchat() {
   const [adminChat, setAdminChat] = useState([]);
 
   useEffect(() => {
-    const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
+    const userChatRef = doc(db, 'validateuser', 'kO4jPXVmEskxx4dPNemz');
 
     const unsub = onSnapshot(userChatRef, (doc) => {
       setChatInfo({
@@ -38,7 +38,7 @@ function Adminchat() {
   }, []);
 
   const handleChat = async () => {
-    const adminChatRef = doc(db, 'admin', '7yWl2bmcmM42uRPuwS6n');
+    const adminChatRef = doc(db, 'validate', 'swDvjvgz9su0LDGwTNki');
     await updateDoc(adminChatRef, {
       chat: adminChat,
     });
@@ -55,7 +55,7 @@ function Adminchat() {
   };
 
   useEffect(() => {
-    const userChatRef = doc(db, 'user', 'rp1urhbA5qYR9l7KVeXz');
+    const userChatRef = doc(db, 'validateuser', 'kO4jPXVmEskxx4dPNemz');
 
     const unsub = onSnapshot(userChatRef, (doc) => {
       setChatArr((prev) => [
@@ -73,7 +73,7 @@ function Adminchat() {
   }, []);
 
   const handleExit = async () => {
-    const adminChatRef = doc(db, 'admin', '7yWl2bmcmM42uRPuwS6n');
+    const adminChatRef = doc(db, 'validate', 'swDvjvgz9su0LDGwTNki');
     await updateDoc(adminChatRef, {
       chat: '',
     });
@@ -82,7 +82,7 @@ function Adminchat() {
   };
 
   useEffect(() => {
-    const userChatRef = doc(db, 'admin', '7yWl2bmcmM42uRPuwS6n');
+    const userChatRef = doc(db, 'validate', 'swDvjvgz9su0LDGwTNki');
     const timer = setTimeout(() => {
       updateDoc(userChatRef, {
         name: '',
